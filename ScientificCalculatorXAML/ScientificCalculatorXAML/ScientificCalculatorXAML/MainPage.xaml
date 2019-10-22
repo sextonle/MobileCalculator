@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ScientificCalculatorXAML.MainPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="YellowBtnStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Goldenrod"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <!--<Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsMouseOver" Value="True">
+                        <Setter Property="TextColor" Value="DarkRed"/>
+                    </Trigger>
+                </Style.Triggers>-->
+            </Style>
+
+            <Style x:Key="GrayBtnStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#9C9A92"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+
+            <Style x:Key="BlueBtnStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#88A9EB"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    
+    
+    <StackLayout BackgroundColor="LightGray" HorizontalOptions="Center" WidthRequest="380" VerticalOptions="Center" HeightRequest="600">
+        
+        <Label Text="CALCULATORIA.com" TextColor="SlateGray" Margin="10,5,10,0"/>
+        
+        <StackLayout BackgroundColor="DarkGray" Margin="10, 0, 10, 10" >
+            <Label  x:Name="display" Text="0" BackgroundColor="#B1C18E" Margin="20, 10, 20, 10"  FontSize="Header" HeightRequest="55"  WidthRequest="80" HorizontalTextAlignment="End"/>
+        </StackLayout>
+
+        <Label Text="standard calculator                                      hide tape" TextColor="MediumBlue" Margin="10, 0, 10, 0" HorizontalTextAlignment="Center"/>
+
+        <Grid x:Name="yellowGrid" Margin="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33"/> <!--31-->
+                <RowDefinition Height="33"/>
+                <RowDefinition Height="33"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="rate" Text="rate" Style="{DynamicResource YellowBtnStyle}"
+                    Grid.Column="0"
+                    Grid.Row="0"
+            />
+            <Button x:Name="euro" Text="€" Style="{StaticResource YellowBtnStyle}"
+                    Grid.Column="1"
+                    Grid.Row="0"
+            />
+            <Button x:Name="dollar" Text="$" Style="{StaticResource YellowBtnStyle}"
+                    Grid.Column="2"
+                    Grid.Row="0"
+            />
+            <Button x:Name="sqrt" Text="√" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="3"
+                    Grid.Row="0"
+            />
+            <Button x:Name="expo" Text="x^y" Style="{StaticResource YellowBtnStyle}" Clicked="operatorClicked"
+                    Grid.Column="4"
+                    Grid.Row="0"
+            />
+            <Button x:Name="xsqr" Text="x^2" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="5"
+                    Grid.Row="0"
+            />
+
+            <Button x:Name="asin" Text="asin" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="0"
+                    Grid.Row="1"
+            />
+            <Button x:Name="acos" Text="acos" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="1"
+                    Grid.Row="1"
+            />
+            <Button x:Name="atan" Text="atan" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="2"
+                    Grid.Row="1"
+            />
+            <Button x:Name="tenToX" Text="10^x" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="3"
+                    Grid.Row="1"
+            />
+            <Button x:Name="ln" Text="ln" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="4"
+                    Grid.Row="1"
+            />
+            <Button x:Name="log" Text="log" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="5"
+                    Grid.Row="1"
+            />
+
+
+            <Button x:Name="sin" Text="sin" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="0"
+                    Grid.Row="2"
+            />
+            <Button x:Name="cos" Text="cos" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="1"
+                    Grid.Row="2"
+            />
+            <Button x:Name="tan" Text="tan" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="2"
+                    Grid.Row="2"
+            />
+            <Button x:Name="OneDivX" Text="1/x" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="3"
+                    Grid.Row="2"
+            />
+            <Button x:Name="pi" Text="π" Style="{StaticResource YellowBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="4"
+                    Grid.Row="2"
+            />
+            <Button x:Name="xFactorial" Text="x!" Style="{StaticResource YellowBtnStyle}" Clicked="miniOperationClicked"
+                    Grid.Column="5"
+                    Grid.Row="2"
+            />
+
+        </Grid>
+
+        <Grid Margin="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Grid.Row="0" Padding="0, 0, 0, 10" VerticalOptions="Start" HeightRequest="40">
+                <Label Text="round" FontSize="10" />
+                <Picker x:Name="rounderPicker" SelectedIndex="3" HeightRequest="25"  FontSize="10" HorizontalOptions="Center" VerticalOptions= "Start" Margin="0">
+                </Picker>
+            </StackLayout>
+
+            <Button x:Name="openPar" Text="(" Style="{StaticResource GrayBtnStyle}"
+                    Grid.Column="1"
+                    Grid.Row="0"
+            />
+            <Button x:Name="closePar" Text=")" Style="{StaticResource GrayBtnStyle}"
+                    Grid.Column="2"
+                    Grid.Row="0"
+            />
+            <Button x:Name="del" Text="DEL" Style="{StaticResource GrayBtnStyle}" Clicked="DelExpClearClicked"
+                    Grid.Column="3"
+                    Grid.Row="0"
+            />
+            <Button x:Name="clear" Text="C" Clicked="DelExpClearClicked"
+                    BackgroundColor="#D00000"
+                    TextColor="White"
+                    CornerRadius="8"
+                    BorderWidth="2"
+                    Grid.Column="4"
+                    Grid.Row="0"
+            />
+
+
+            <Button x:Name="mAdd" Text="M+" Style="{StaticResource GrayBtnStyle}" Clicked="memClicked"
+                    Grid.Column="0"
+                    Grid.Row="1"
+            />
+            <Button x:Name="mMin" Text="M-" Style="{StaticResource GrayBtnStyle}" Clicked="memClicked"
+                    Grid.Column="1"
+                    Grid.Row="1"
+            />
+            <Button x:Name="MR" Text="MR" Style="{StaticResource GrayBtnStyle}" Clicked="memClicked"
+                    Grid.Column="2"
+                    Grid.Row="1"
+            />
+            <Button x:Name="MS" Text="MS" Style="{StaticResource GrayBtnStyle}" Clicked="memClicked"
+                    Grid.Column="3"
+                    Grid.Row="1"
+            />
+            <Button x:Name="MC" Text="MC" Style="{StaticResource GrayBtnStyle}" Clicked="memClicked"
+                    Grid.Column="4"
+                    Grid.Row="1"
+            />
+
+
+            <Button x:Name="seven" Text="7" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="0"
+                    Grid.Row="2"
+            />
+            <Button x:Name="eight" Text="8" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="1"
+                    Grid.Row="2"
+            />
+            <Button x:Name="nine" Text="9" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="2"
+                    Grid.Row="2"
+            />
+            <Button x:Name="div" Text="÷" Style="{StaticResource BlueBtnStyle}" Clicked="operatorClicked"
+                    Grid.Column="3"
+                    Grid.Row="2"
+            />
+            <Button x:Name="percent" Text="%" Style="{StaticResource GrayBtnStyle}"
+                    Grid.Column="4"
+                    Grid.Row="2"
+            />
+
+            <Button x:Name="four" Text="4" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="0"
+                    Grid.Row="3"
+            />
+            <Button x:Name="five" Text="5" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="1"
+                    Grid.Row="3"
+            />
+            <Button x:Name="six" Text="6" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="2"
+                    Grid.Row="3"
+            />
+            <Button x:Name="times" Text="x" Style="{StaticResource BlueBtnStyle}" Clicked="operatorClicked"
+                    Grid.Column="3"
+                    Grid.Row="3"
+            />
+            <Button x:Name="exp" Text="exp" Style="{StaticResource GrayBtnStyle}" Clicked="operatorClicked"
+                    Grid.Column="4"
+                    Grid.Row="3"
+            />
+
+            <Button x:Name="one" Text="1" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="0"
+                    Grid.Row="4"
+            />
+            <Button x:Name="two" Text="2" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="1"
+                    Grid.Row="4"
+            />
+            <Button x:Name="three" Text="3" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="2"
+                    Grid.Row="4"
+            />
+            <Button x:Name="minus" Text="-" Style="{StaticResource BlueBtnStyle}" Clicked="operatorClicked"
+                    Grid.Column="3"
+                    Grid.Row="4"
+            />
+            <Button x:Name="plusMinus" Text="±" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="4"
+                    Grid.Row="4"
+            />
+
+            <Button x:Name="zero" Text="0" Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="0"
+                    Grid.Row="5"
+            />
+            <Button x:Name="decimal" Text="." Style="{StaticResource GrayBtnStyle}" Clicked="digitClicked"
+                    Grid.Column="1"
+                    Grid.Row="5"
+            />
+            <Button x:Name="equals" Text="=" Style="{StaticResource GrayBtnStyle}" Clicked="equalsClicked"
+                    Grid.Column="2"
+                    Grid.Row="5"
+            />
+            <Button x:Name="plus" Text="+" Style="{StaticResource BlueBtnStyle}" Clicked="operatorClicked"
+                    Grid.Column="3"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+            />
+
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
